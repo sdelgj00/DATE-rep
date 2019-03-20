@@ -59,7 +59,7 @@ public class Date{
 			Smonth="Agosto";
 			break;
 			case 9:
-			Smonth="Septiempbre";
+			Smonth="Septiembre";
 			break;
 			case 10:
 			Smonth="Octubre";
@@ -151,31 +151,79 @@ public class Date{
 		}
 		return result;
 	}
-	public String mesesQueFaltan()throws DateException{
+	public int daysOfMonth(){
+		int dias=0;		
+		if(_month==1||_month==3||_month==5||_month==7||_month==8||_month==10||_month==12){
+			dias=31;	
+		}
+		if(_month==4||_month==6||_month==9||_month==11){
+			dias=30;
+		}
+		if(_month==2){
+			dias=28;
+		}
+		return dias;
+	}
+	public String monthsToEnd()throws DateException{
 		StringBuilder meses= new StringBuilder();
+		Date date=new Date(1,_month,1);
 		for(int i=_month; i<=12; i++){
-			setMonth(i);
-			meses.append(nameOfMonth()+" ");
+			date.setMonth(i);
+			meses.append(date.nameOfMonth()+" ");
 		}
 		return meses.toString(); 
 	}
-	public Date randomDate();
-		int day, month, year;
-		month=Math.random()*12 +1;
-		if(_month==1||_month==3||_month==5||_month==7||_month==8||month==10||month==12){
-			day=Math.random()*31+1;
-		}else
-		
-		if(isDayOfMonth(day, month)){
-			_day=day;
-			_month=month;
-			_year=year;		
-		}else{
-			throw new DateException("Fecha inválida: "+day+"/"+month+"/"+year);
-		
-}
-	
-	
+	public String daysToEnd(){
+		StringBuilder dias=new StringBuilder();
+		for(int i=_day;i<=this.daysOfMonth();i++){
+			dias.append(i+" ");
+		}
+		return dias.toString();
 	}
+	public Date randomDate()throws DateException{
+		int day=0, month, year;
+		Date date;
+		month=(int)(Math.random()*12 +1);
+		year=(int)(Math.random()*2019+1);		
+		if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
+			day=(int)(Math.random()*31+1);
+		}else if(month==4||month==6||month==9||month==11){
+			day=(int)(Math.random()*30+1);
+		}else if(month==2){
+			day=(int)(Math.random()*28+1);
+		}
+		if(isDayOfMonth(day,month)){
+			date= new Date(day,month,year);
+			return date;
+		}
+		else{
+			throw new DateException("Fecha inválida: "+day+"/"+month+"/"+year);
+		}	
+		
+	}
+	public String similarMonths()throws DateException{
+		StringBuilder result=new StringBuilder();
+		Date date=new Date(1,1,1);
+		for(int i=1; i<=12; i++){
+			date.setMonth(i);
+			if(this.daysOfMonth()==date.daysOfMonth()){
+				result.append(date.nameOfMonth()+" ");			
+			}
+		}
+		return result.toString();
+	}
+	public int daysPassed()throws DateException{
+		Date date=new Date(1,1,1);
+		int dias=0;
+		for(int i=1; i<_month; i++){
+			date.setMonth(i);
+			dias+=date.daysOfMonth();
+		}
+		dias+=this.getDay();
+		return dias;
+	}
+	
+	
+}
 
 
