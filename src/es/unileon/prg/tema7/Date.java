@@ -222,6 +222,79 @@ public class Date{
 		dias+=this.getDay();
 		return dias;
 	}
+	public int attempsRandomDate(){
+		Date date;
+		int i=0;
+		int day;
+		int month;
+		int counter=0;
+		while(i==0){
+			day=(int)(Math.random()*31+1);
+			month=(int)(Math.random()*12+1);
+			if(day==this._day&&month==this._month){
+				
+				i=1;
+			}
+			else{
+			counter+=1;	
+			}
+		
+		}
+		return counter;
+	}
+	public int attempsRandomDate2(){
+				Date date;
+		int i=0;
+		int day;
+		int month;
+		int counter=0;
+		do{
+			day=(int)(Math.random()*31+1);
+			month=(int)(Math.random()*12+1);
+			if(day==this._day&&month==this._month){
+				
+				i=1;
+			}
+			else{
+			counter+=1;	
+			}
+		}while(i==0);
+		return counter;
+	}
+	public String dayOfWeek(int start)throws DateException{
+		int days=daysPassed()+start;
+		int dayOfW=(days)%7;
+		String retourn="";
+		switch(dayOfW){
+			case 0:
+			retourn="Lunes";
+			break;
+			case 1:
+			retourn="Martes";
+			break;
+			case 2:
+			retourn="Miércoles";
+			break;
+			case 3:
+			retourn="Jueves";
+			break;
+			case 4:
+			retourn="Viernes";
+			break;
+			case 5:
+			retourn="Sábado";
+			break;
+			case 6:
+			retourn="Domingo";
+			break;
+		}
+		return retourn;
+			
+	}
+	public int help(){
+		return 78347;
+	}
+	
 	
 	
 }

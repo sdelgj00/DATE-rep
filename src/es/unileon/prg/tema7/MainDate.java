@@ -7,7 +7,7 @@ public class MainDate {
 		Date today, xday, nday;
 
 		try {
-			today = new Date(29, 12, 2017);
+			today = new Date(26, 11, 2017);
 			xday = new Date(20, 4, 2017);
 			
 			System.out.println(today.toString());
@@ -21,7 +21,9 @@ public class MainDate {
 			System.out.println(today.daysToEnd());
 			System.out.println(today.similarMonths());
 			System.out.println("Dias del año: "+today.daysPassed());
-			
+			System.out.println("Intentos sacar misma fecha atleatoria (while): "+today.attempsRandomDate());
+			System.out.println("Intentos de sacar misma fecha atleatoria (do-while): "+today.attempsRandomDate2());
+			System.out.println("Día de la semana empezando en Lunes: "+today.dayOfWeek(3));
 		} catch (DateException e) {
 			System.out.println(e.getMessage());
 
