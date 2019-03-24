@@ -12,7 +12,7 @@ public class Date{
 			throw new DateException("Fecha inválida: "+day+"/"+month+"/"+year);		}
 		
 	}
-	private boolean isDayOfMonth(int day, int month){
+	private boolean isDayOfMonth(int day, int month){//Comprueba si el día corresponde a el mes.
 		boolean salida=false;	
 		if(month==1||month==3||month==5||month==7||month==8||month==10||month==12){
 			if(day<=31&&day>=1){
@@ -31,7 +31,7 @@ public class Date{
 		}
 		return salida;
 	}
-	public String nameOfMonth(){
+	public String nameOfMonth(){//Devuelve el nombre del mes.
 		String Smonth="";
 		switch(_month){
 			case 1:
@@ -73,7 +73,7 @@ public class Date{
 		}
 		return Smonth;
 	}
-	public String seasonOfDate(){
+	public String seasonOfDate(){//Devuelve la estación según la fecha.
 		String season="_";
 		if(_month==1||_month==2||_month==12){
 			season="Invierno";
@@ -91,20 +91,20 @@ public class Date{
 	
 
 	}
-	public String toString() {
+	public String toString() {//Imprime la fecha.
 		return this._day + "/" + this._month + "/" + this._year;
 		
 	}
-	public int getDay(){
+	public int getDay(){//Imprime el día.
 		return _day;
 	}
-	public int getMonth(){
+	public int getMonth(){//Imprime el mes.
 		return _month;
 	}
-	public int getYear(){
+	public int getYear(){//Imprime el año.
 		return _year;
 	}
-	public void setDay(int day)throws DateException{
+	public void setDay(int day)throws DateException{//Cambia el día de una fecha.
 		if(isDayOfMonth(day, _month)){
 			_day=day;
 		}
@@ -112,7 +112,7 @@ public class Date{
 			throw new DateException("Fecha inválida: "+_day+"/"+_month+"/"+_year);
 		}
 	}
-	public void setMonth(int month)throws DateException{
+	public void setMonth(int month)throws DateException{//Cambia el mes de una fecha.
 		if(isDayOfMonth(_day, month)){
 			_month=month;
 		}
@@ -120,38 +120,38 @@ public class Date{
 			throw new DateException("Fecha inválida: "+_day+"/"+_month+"/"+_year);
 		}
 	}
-	public void setYear(int year){
+	public void setYear(int year){//Cambia el año de una fecha.
 		_year=year;
 	}
-	public boolean isSameYear(Date date){
+	public boolean isSameYear(Date date){//Compara si dos fechas son del mismo año.
 		boolean result=false;
 		if(_year==date.getYear()){
 			result=true;
 		}
 		return result;
 	}
-	public boolean isSameMonth(Date date){
+	public boolean isSameMonth(Date date){//Compara si dos fechas son del mismo mes.
 		boolean result=false;
 		if(_month==date.getMonth()){
 			result=true;
 		}
 		return result;
 	}
-	public boolean isSameDay(Date date){
+	public boolean isSameDay(Date date){//Compara si dos fechas son del mismo día.
 		boolean result=false;
 		if(_day==date.getDay()){
 			result=true;
 		}
 		return result;
 	}
-	public boolean isSame(Date date){
+	public boolean isSame(Date date){//Compara si dos fechas son iguales.
 		boolean result=false;
 		if(this.isSameDay(date)&&this.isSameMonth(date)&&this.isSameYear(date)){
 			result=true;
 		}
 		return result;
 	}
-	public int daysOfMonth(){
+	public int daysOfMonth(){//Devuelve los días de un determinado mes.
 		int dias=0;		
 		if(_month==1||_month==3||_month==5||_month==7||_month==8||_month==10||_month==12){
 			dias=31;	
@@ -164,7 +164,7 @@ public class Date{
 		}
 		return dias;
 	}
-	public String monthsToEnd()throws DateException{
+	public String monthsToEnd()throws DateException{//Devuelve los meses que quedan para que acabe el año.
 		StringBuilder meses= new StringBuilder();
 		Date date=new Date(1,_month,1);
 		for(int i=_month; i<=12; i++){
@@ -173,14 +173,14 @@ public class Date{
 		}
 		return meses.toString(); 
 	}
-	public String daysToEnd(){
+	public String daysToEnd(){//Devuelve los días que quedan para que acabe el mes.
 		StringBuilder dias=new StringBuilder();
 		for(int i=_day;i<=this.daysOfMonth();i++){
 			dias.append(i+" ");
 		}
 		return dias.toString();
 	}
-	public Date randomDate()throws DateException{
+	public Date randomDate()throws DateException{//Crea una fecha atleatoria.
 		int day=0, month, year;
 		Date date;
 		month=(int)(Math.random()*12 +1);
@@ -201,7 +201,7 @@ public class Date{
 		}	
 		
 	}
-	public String similarMonths()throws DateException{
+	public String similarMonths()throws DateException{//Devuelve los meses con el mismo número de días que la fecha introducida.
 		StringBuilder result=new StringBuilder();
 		Date date=new Date(1,1,1);
 		for(int i=1; i<=12; i++){
@@ -212,7 +212,7 @@ public class Date{
 		}
 		return result.toString();
 	}
-	public int daysPassed()throws DateException{
+	public int daysPassed()throws DateException{//Devuelve los días del año que han pasado hasta una fecha determinada.
 		Date date=new Date(1,1,1);
 		int dias=0;
 		for(int i=1; i<_month; i++){
@@ -222,7 +222,7 @@ public class Date{
 		dias+=this.getDay();
 		return dias;
 	}
-	public int attempsRandomDate(){
+	public int attempsRandomDate(){//Devuelve el número de intentos hasta que se genera de forma atleatoria una fecha con el mismo mes y día.
 		Date date;
 		int i=0;
 		int day;
@@ -242,7 +242,7 @@ public class Date{
 		}
 		return counter;
 	}
-	public int attempsRandomDate2(){
+	public int attempsRandomDate2(){//Devuelve el número de intentos hasta que se genera de forma atleatoria una fecha con el mismo mes y día.
 				Date date;
 		int i=0;
 		int day;
@@ -261,7 +261,7 @@ public class Date{
 		}while(i==0);
 		return counter;
 	}
-	public String dayOfWeek(int start)throws DateException{
+	public String dayOfWeek(int start)throws DateException{//Devuelve el día de la semana de una fecha introduciendo en que día empieza el año.
 		int days=daysPassed()+start;
 		int dayOfW=(days)%7;
 		String retourn="";
@@ -290,13 +290,10 @@ public class Date{
 		}
 		return retourn;
 			
-	}
-	public int help(){
-		return 78347;
-	}
+
 	
 	
 	
 }
-
+}
 
